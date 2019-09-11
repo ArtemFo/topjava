@@ -18,9 +18,8 @@ public class UserMealWithExceed {
         this.exceed = exceed;
     }
 
-    public String toString() {return dateTime.toString() + " " + description + " " + calories + " " + exceed;}
+    public String toString() {
+        return String.format("%s %s %d %b", dateTime.toString(), description, calories, exceed);
+    }
 
-    public int getCalories() {return calories;}
-
-    public void setExceed(boolean exceed) {this.exceed = exceed;}
 }
