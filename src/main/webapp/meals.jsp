@@ -14,6 +14,10 @@
         .excess {
             color: red;
         }
+        .search_block {
+            display: inline-block;
+            width: 33%;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +25,20 @@
     <h3><a href="index.html">Home</a></h3>
     <hr/>
     <h2>Meals</h2>
+    <form method="post" action="meals?action=filter">
+        <div class="search_block">
+            <input type="date" name="startDate" placeholder="Date start"/>
+            <input type="date" name="endDate" placeholder="Date end"/>
+        </div>
+        <div class="search_block">
+            <input type="time" name="startTime" placeholder="Time start"/>
+            <input type="time" name="endTime" placeholder="Time end"/>
+        </div>
+        <div class="search_block">
+            <button type="reset">Reset</button>
+            <button type="submit">Filter</button>
+        </div>
+    </form>
     <a href="meals?action=create">Add Meal</a>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">

@@ -25,7 +25,7 @@ public class MealRestController {
         log.info("create {}", meal);
         checkNew(meal);
         meal.setUserId(authUserId());
-        return service.create(meal);
+        return service.create(meal, authUserId());
     }
 
     public Meal get(int id) {
@@ -37,7 +37,7 @@ public class MealRestController {
         log.info("update {} with id={}", meal, id);
         assureIdConsistent(meal, id);
         checkUserIdInMeal(meal, authUserId());
-        service.update(meal);
+        service.update(meal, authUserId());
     }
 
     public void delete(int id) {
@@ -50,9 +50,9 @@ public class MealRestController {
         return service.getAll(authUserId());
     }
 
-    public List<Meal> getAll(
+    public List<Meal> getBetween(
             LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
-        log.info("get all");
+        log.info("get between");
         startDate = startDate==null ? LocalDate.MIN : startDate;
         endDate = endDate==null ? LocalDate.MAX : endDate;
         startTime = startTime==null ? LocalTime.MIN : startTime;

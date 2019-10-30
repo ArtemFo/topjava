@@ -23,21 +23,21 @@ public class MealService {
         this.repository = repository;
     }
 
-    public Meal create(Meal meal) {
-        return repository.save(meal);
+    public Meal create(Meal meal, int userId) {
+        return repository.save(meal, userId);
     }
 
     public Meal get(int id, int userId) throws NotFoundException{
-        return checkUserIdInMeal(checkNotFoundWithId(repository.get(id), id), userId);
+        return checkUserIdInMeal(checkNotFoundWithId(repository.get(id, userId), id), userId);
     }
 
-    public void update(Meal meal) throws NotFoundException {
-        checkNotFoundWithId(repository.save(meal), meal.getId());
+    public void update(Meal meal, int userId) throws NotFoundException {
+        checkNotFoundWithId(repository.save(meal, userId), meal.getId());
     }
 
     public void delete(int id, int userId) throws NotFoundException {
-        checkUserIdInMeal(checkNotFoundWithId(repository.get(id), id), userId);
-        repository.delete(id);
+        checkUserIdInMeal(checkNotFoundWithId(repository.get(id, userId), id), userId);
+        repository.delete(id, userId);
     }
 
     public List<Meal> getAll(int userId) {
@@ -45,7 +45,7 @@ public class MealService {
     }
 
     public List<Meal> getAll(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime, int userId) {
-        return (List<Meal>) repository.getAll(startDate, endDate, startTime, endTime, userId);
+        return (List<Meal>) repository.getBetween(startDate, endDate, startTime, endTime, userId);
     }
 
 }

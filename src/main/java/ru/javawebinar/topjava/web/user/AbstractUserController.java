@@ -7,6 +7,7 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
@@ -46,6 +47,7 @@ public abstract class AbstractUserController {
 
     public User getByMail(String email) {
         log.info("getByEmail {}", email);
+        Objects.requireNonNull(email);
         return service.getByEmail(email);
     }
 }
