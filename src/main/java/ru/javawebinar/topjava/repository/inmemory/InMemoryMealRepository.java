@@ -12,7 +12,6 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,8 +20,7 @@ import java.util.stream.Collectors;
 
 import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.ADMIN_ID;
 import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.USER_ID;
-import static ru.javawebinar.topjava.util.DateTimeUtil.isBetweenDate;
-import static ru.javawebinar.topjava.util.DateTimeUtil.isBetweenTime;
+import static ru.javawebinar.topjava.util.DateTimeUtil.isBetween;
 
 @Repository
 public class InMemoryMealRepository implements MealRepository {
@@ -55,7 +53,7 @@ public class InMemoryMealRepository implements MealRepository {
             return null;
         }
         Map<Integer, Meal> meals = repository.computeIfAbsent(userId, ConcurrentHashMap::new);
-        meals.put(meal.getId(), meal);
+        meals.compute(meal.getId(), (k, v) -> meal);
         return meal;
     }
 
@@ -81,8 +79,8 @@ public class InMemoryMealRepository implements MealRepository {
     public Collection<Meal> getBetween(
             LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime, int userId) {
         Map<Integer, Meal> meals = repository.get(userId);
-        return meals == null ? null : getFiltered(meal -> isBetweenDate(meal.getDate(), startDate, endDate)
-                && isBetweenTime(meal.getTime(), startTime, endTime), meals);
+        return meals == null ? null : getFiltered(meal -> isBetween(meal.getDate(), startDate, endDate)
+                && isBetween(meal.getTime(), startTime, endTime), meals);
     }
 
     private Collection<Meal> getFiltered(Predicate<Meal> filter, Map<Integer, Meal> meals) {

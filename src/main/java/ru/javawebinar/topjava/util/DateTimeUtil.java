@@ -12,11 +12,7 @@ public class DateTimeUtil {
     public static final LocalDate MIN_DATE = LocalDate.of(0, 1, 1);
     public static final LocalDate MAX_DATE = LocalDate.of(3000, 1, 1);
 
-    public static boolean isBetweenDate(LocalDate current, LocalDate start, LocalDate end) {
-        return current.compareTo(start) >= 0 && current.compareTo(end) <= 0;
-    }
-
-    public static boolean isBetweenTime(LocalTime current, LocalTime start, LocalTime end) {
+    public static <T extends Comparable<? super T>> boolean isBetween(T current, T start, T end) {
         return current.compareTo(start) >= 0 && current.compareTo(end) <= 0;
     }
 
