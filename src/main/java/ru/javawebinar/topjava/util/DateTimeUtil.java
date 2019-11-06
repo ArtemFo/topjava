@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 
 public class DateTimeUtil {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final LocalDate DATE_MIN = LocalDate.of(1970, 1, 2);
+    public static final LocalDate DATE_MAX = LocalDate.of(2038, 1, 18);
 
     public static String toString(LocalDateTime ldt) {
         return ldt == null ? "" : ldt.format(DATE_TIME_FORMATTER);
