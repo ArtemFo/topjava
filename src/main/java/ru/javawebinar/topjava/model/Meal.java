@@ -1,7 +1,6 @@
 package ru.javawebinar.topjava.model;
 
 import org.hibernate.validator.constraints.Range;
-import ru.javawebinar.topjava.util.LocalDateTimePersistenceConverter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -30,7 +29,6 @@ public class Meal extends AbstractBaseEntity {
 
 
     @Column(name = "date_time", nullable = false, unique = true)
-//    @Convert(converter = LocalDateTimePersistenceConverter.class)
     @NotNull
     private LocalDateTime dateTime;
 
@@ -121,7 +119,6 @@ public class Meal extends AbstractBaseEntity {
                 ", description='" + description + '\'' +
                 ", calories=" + calories +
                 ", id=" + id +
-                ", user=" + user.getName() +
                 "} " + super.toString();
     }
 }

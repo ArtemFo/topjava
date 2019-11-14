@@ -9,8 +9,6 @@ import ru.javawebinar.topjava.repository.MealRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,9 +27,10 @@ public class JpaMealRepository implements MealRepository {
             meal.setUser(ref);
             em.persist(meal);
             return meal;
-        } else {
+        } else if (meal.getUser().getId() == userId) {
             return em.merge(meal);
         }
+        return null;
     }
 
     @Override
