@@ -28,10 +28,10 @@ public class MealServiceTest {
     @Autowired
     private MealService service;
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void delete() throws Exception {
         service.delete(MEAL1_ID, USER_ID);
-        assertMatch(service.getAll(USER_ID), MEAL6, MEAL5, MEAL4, MEAL3, MEAL2);
+        assertMatch(service.get(MEAL1_ID, USER_ID), MEAL1);
     }
 
     @Test(expected = NotFoundException.class)
@@ -50,7 +50,7 @@ public class MealServiceTest {
         Meal created = service.create(newMeal, USER_ID);
         newMeal.setId(created.getId());
         assertMatch(newMeal, created);
-        assertMatch(service.getAll(USER_ID), newMeal, MEAL6, MEAL5, MEAL4, MEAL3, MEAL2, MEAL1);
+        assertMatch(service.get(created.getId(), USER_ID), newMeal);
     }
 
     @Test
