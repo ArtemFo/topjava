@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProxyUserRepository extends JpaRepository<User, Integer> {
     @Transactional
@@ -23,7 +24,7 @@ public interface ProxyUserRepository extends JpaRepository<User, Integer> {
     List<User> findAll(Sort sort);
 
     @Override
-    User getOne(Integer id);
+    Optional<User> findById(Integer id);
 
     User getByEmail(String email);
 }
