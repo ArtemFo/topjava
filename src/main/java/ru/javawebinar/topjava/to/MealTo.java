@@ -13,6 +13,14 @@ public class MealTo {
 
     private final boolean excess;
 
+    public MealTo() {
+        this.id = 0;
+        this.dateTime = null;
+        this.description = null;
+        this.calories = 0;
+        this.excess = true;
+    }
+
     public MealTo(Integer id, LocalDateTime dateTime, String description, int calories, boolean excess) {
         this.id = id;
         this.dateTime = dateTime;
