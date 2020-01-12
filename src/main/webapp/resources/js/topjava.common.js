@@ -39,7 +39,6 @@ function updateTable() {
 }
 
 function save() {
-    debugger;
     $.ajax({
         type: "POST",
         url: context.ajaxUrl,
