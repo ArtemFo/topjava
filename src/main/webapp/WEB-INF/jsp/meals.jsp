@@ -11,26 +11,35 @@
 
 <section>
     <h3><spring:message code="meal.title"/></h3>
-
-    <form method="get" action="meals/filter">
-        <dl>
-            <dt><spring:message code="meal.startDate"/>:</dt>
-            <dd><input type="date" name="startDate" value="${param.startDate}"></dd>
-        </dl>
-        <dl>
-            <dt><spring:message code="meal.endDate"/>:</dt>
-            <dd><input type="date" name="endDate" value="${param.endDate}"></dd>
-        </dl>
-        <dl>
-            <dt><spring:message code="meal.startTime"/>:</dt>
-            <dd><input type="time" name="startTime" value="${param.startTime}"></dd>
-        </dl>
-        <dl>
-            <dt><spring:message code="meal.endTime"/>:</dt>
-            <dd><input type="time" name="endTime" value="${param.endTime}"></dd>
-        </dl>
-        <button type="submit"><spring:message code="meal.filter"/></button>
-    </form>
+    <div class="view-box">
+        <form method="post" id="filter" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="startDate"><spring:message code="meal.startDate"/>:</label>
+                <div class="col-sm-2">
+                    <input id="startDate" type="date" name="startDate" value="${param.startDate}">
+                </div>
+                <label class="control-label col-sm-2" for="endDate"><spring:message code="meal.endDate"/>:</label>
+                <div class="col-sm-2">
+                    <input id="endDate" type="date" name="endDate" value="${param.startDate}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="startTime"><spring:message code="meal.startTime"/>:</label>
+                <div class="col-sm-2">
+                    <input id="startTime" type="date" name="startTime" value="${param.startTime}">
+                </div>
+                <label class="control-label col-sm-2" for="endTime"><spring:message code="meal.endTime"/>:</label>
+                <div class="col-sm-2">
+                    <input id="endTime" type="date" name="endTime" value="${param.startTime}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-outline-primary pull-right"><spring:message code="meal.filter"/></button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="jumbotron pt-4">
         <div class="container">
             <button class="btn btn-primary" onclick="add()">
@@ -85,7 +94,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="description" class="col-form-label"><spring:message code="meal.description"/></label>
+                        <label for="description" class="col-form-label"><spring:message
+                                code="meal.description"/></label>
                         <input type="text" class="form-control" id="description" name="description"
                                placeholder="<spring:message code="meal.description"/>">
                     </div>

@@ -1,7 +1,21 @@
 // $(document).ready(function () {
+const ajaxUrl = "ajax/profile/meals/";
+
+function updateTable() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + 'filter',
+        data: $('#filter').serialize(),
+        success: function (data) {
+            updateTableByData(data);
+        }
+    });
+    return false;
+}
+
 $(function () {
     makeEditable({
-            ajaxUrl: "ajax/profile/meals/",
+            ajaxUrl: ajaxUrl,
             datatableApi: $("#datatable").DataTable({
                 "paging": false,
                 "info": true,
