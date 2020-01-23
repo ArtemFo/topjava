@@ -10,9 +10,6 @@ import ru.javawebinar.topjava.util.MealsUtil;
 @Controller
 public class RootController {
 
-    @Autowired
-    private MealService mealService;
-
     @GetMapping("/")
     public String root() {
         return "redirect:meals";
@@ -28,10 +25,15 @@ public class RootController {
         return "login";
     }
 
+//    @GetMapping("/meals")
+//    public String getMeals(Model model) {
+//        model.addAttribute("meals",
+//                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+//        return "meals";
+//    }
+
     @GetMapping("/meals")
-    public String getMeals(Model model) {
-        model.addAttribute("meals",
-                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+    public String getMeals() {
         return "meals";
     }
 }

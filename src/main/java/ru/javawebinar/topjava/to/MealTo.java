@@ -1,5 +1,11 @@
 package ru.javawebinar.topjava.to;
 
+import org.hibernate.validator.constraints.Range;
+import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -8,14 +14,18 @@ public class MealTo extends BaseTo {
 
     private final LocalDateTime dateTime;
 
+    @NotBlank
+    @Size(min = 2, max = 100, message = "length must be between 2 and 100 characters")
     private final String description;
 
+    @NotNull
+    @Range(min = 10, max = 5000)
     private final int calories;
 
     private final boolean excess;
 
     @ConstructorProperties({"id", "dateTime", "description", "calories", "excess"})
-    public MealTo(Integer id, LocalDateTime dateTime, String description, int calories, boolean excess) {
+    public MealTo(Integer id, LocalDateTime dateTime, String description, int calories, @Nullable boolean excess) {
         super(id);
         this.dateTime = dateTime;
         this.description = description;
