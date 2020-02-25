@@ -57,7 +57,7 @@ function updateTableByData(data) {
 }
 
 function save() {
-    debugger;
+    closeNoty();
     $.ajax({
         type: "POST",
         url: context.ajaxUrl,
